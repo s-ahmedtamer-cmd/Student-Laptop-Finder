@@ -1,0 +1,17 @@
+{
+  "name": "student-laptop-finder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "start": "npx http-server . -p 5500"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/cli": "^4.1.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "http-server": "^14.1.1"
+  }
+}

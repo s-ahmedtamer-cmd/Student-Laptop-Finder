@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="battery">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Laptops | CampusGear</title>
+
+    <script>
+        try {
+            document.documentElement.dataset.theme =
+                JSON.parse(localStorage.getItem('lf-theme')) || 'battery';
+        } catch (error) {
+            document.documentElement.dataset.theme = 'battery';
+        }
+    </script>
+
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 border-b backdrop-blur-xl">
+
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+
+            <a href="./index.html"
+               class="flex items-center gap-3 text-lg font-extrabold tracking-tight">
+
+                <span id="brand-mark"
+                      class="flex h-10 w-10 items-center justify-center rounded-xl text-xl text-white">
+                    ▣
+                </span>
+
+                Campus<span class="accent-text">Gear</span>
+            </a>
+
+            <nav id="desktop-nav"
+                 class="hidden items-center gap-1 md:flex"
+                 aria-label="Main navigation">
+
+                <a class="nav-link" href="./index.html" data-route="index">Home</a>
+                <a class="nav-link" href="./laptops.html" data-route="laptops">Explore laptops</a>
+                <a class="nav-link" href="./details.html" data-route="details">Details</a>
+                <a class="nav-link" href="./favorites.html" data-route="favorites">
+                    Favorites <span data-fav-count>0</span>
+                </a>
+                <a class="nav-link" href="./compare.html" data-route="compare">Compare</a>
+
+            </nav>
+
+            <div class="flex items-center gap-2">
+
+                <button type="button"
+                        data-theme-toggle
+                        class="btn-secondary whitespace-nowrap text-xs sm:text-sm">
+                    ☀ Battery Saver
+                </button>
+
+                <button type="button"
+                        id="mobile-toggle"
+                        class="btn-secondary md:hidden"
+                        aria-label="Toggle navigation"
+                        aria-expanded="false">
+                    ☰
+                </button>
+
+            </div>
+
+        </div>
+
+        <nav id="mobile-nav"
+             class="hidden flex-col gap-1 border-t px-4 py-3 md:hidden"
+             aria-label="Mobile navigation">
+
+            <a class="nav-link" href="./index.html" data-route="index">Home</a>
+            <a class="nav-link" href="./laptops.html" data-route="laptops">Explore laptops</a>
+            <a class="nav-link" href="./details.html" data-route="details">Details</a>
+            <a class="nav-link" href="./favorites.html" data-route="favorites">
+                Favorites <span data-fav-count>0</span>
+            </a>
+            <a class="nav-link" href="./compare.html" data-route="compare">Compare</a>
+
+        </nav>
+
+    </header>
+
+    <!-- Main Content -->
+    <main id="app"
+          class="mx-auto w-full max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+
+        <!-- Page Title -->
+        <section class="mb-9">
+
+            <p class="accent-text text-sm font-bold uppercase tracking-widest">
+                THE COLLECTION
+            </p>
+
+            <h1 class="mt-2 text-4xl font-extrabold sm:text-5xl">
+                Explore laptops
+            </h1>
+
+            <p class="muted mt-3">
+                Filter by what matters.
+                Find the right fit for your workflow.
+            </p>
+
+        </section>
+
+        <!-- Filters -->
+        <section class="surface mb-8 grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-5"
+                 aria-label="Laptop filters">
+
+            <!-- Live Search -->
+            <label class="text-sm font-semibold lg:col-span-2">
+                Search name or brand
+
+                <input
+                    type="search"
+                    id="search"
+                    class="field-control mt-2"
+                    placeholder="e.g. ASUS, MacBook...">
+            </label>
+
+            <!-- Category -->
+            <label class="text-sm font-semibold">
+                Category
+
+                <select id="category" class="field-control mt-2">
+                    <option value="all">All categories</option>
+                    <option value="ultrabook">Ultrabook</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="2-in-1">2-in-1</option>
+                    <option value="creator">Creator</option>
+                    <option value="budget">Budget</option>
+                </select>
+            </label>
+
+            <!-- Maximum Price -->
+            <label class="text-sm font-semibold">
+                Max price ($)
+
+                <input
+                    type="number"
+                    id="max-price"
+                    class="field-control mt-2"
+                    min="0"
+                    placeholder="Any price">
+            </label>
+
+            <!-- Minimum RAM -->
+            <label class="text-sm font-semibold">
+                Minimum RAM
+
+                <select id="min-ram" class="field-control mt-2">
+                    <option value="0">Any RAM</option>
+                    <option value="8">8+ GB</option>
+                    <option value="16">16+ GB</option>
+                    <option value="32">32+ GB</option>
+                </select>
+            </label>
+
+            <!-- Sorting -->
+            <label class="text-sm font-semibold sm:col-span-2">
+                Sort by
+
+                <select id="sort" class="field-control mt-2">
+                    <option value="featured">Featured</option>
+
+                    <option value="price-asc">
+                        Price: Low to high
+                    </option>
+
+                    <option value="price-desc">
+                        Price: High to low
+                    </option>
+
+                    <option value="batteryHours-asc">
+                        Battery: Low to high
+                    </option>
+
+                    <option value="batteryHours-desc">
+                        Battery: High to low
+                    </option>
+
+                    <option value="weightKg-asc">
+                        Weight: Light to heavy
+                    </option>
+
+                    <option value="weightKg-desc">
+                        Weight: Heavy to light
+                    </option>
+                </select>
+            </label>
+
+            <!-- Reset -->
+            <div class="flex items-end sm:col-span-2">
+
+                <button
+                    type="button"
+                    id="reset"
+                    class="btn-secondary w-full">
+
+                    ↻ Reset all filters
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Results Count -->
+        <div class="mb-5 flex items-center justify-between">
+
+            <p id="result-count"
+               class="muted text-sm font-medium"
+               aria-live="polite">
+                Loading...
+            </p>
+
+            <a href="./favorites.html"
+               class="accent-text text-sm font-semibold">
+                View favorites →
+            </a>
+
+        </div>
+
+        <!-- Dynamic Laptop Cards -->
+        <div id="catalogue"
+             class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t py-8">
+
+        <div class="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-4 text-sm muted sm:flex-row sm:px-6 lg:px-8">
+
+            <span>© 2026 CampusGear · Built for students</span>
+            <span>SW302 · JavaScript + Tailwind CSS 4</span>
+
+        </div>
+
+    </footer>
+
+    <!-- Notifications -->
+    <div id="toast"
+         class="fixed bottom-5 right-5 z-50 hidden max-w-sm rounded-xl px-5 py-3 text-sm font-semibold shadow-2xl"
+         role="status">
+    </div>
+
+    <script type="module" src="./src/js/laptops.js"></script>
+
+</body>
+</html>

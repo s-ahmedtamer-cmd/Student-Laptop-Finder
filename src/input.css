@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@theme {
+  --color-brand: #ed793f;
+  --color-saver: #169c6c;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+:root { --page:#f5f7fb; --panel:#ffffff; --raised:#edf1f7; --ink:#162137; --muted:#66758d; --line:#e3e8f0; --accent:#15966a; --accent-contrast:#fff; }
+:root[data-theme="performance"] { --page:#0b1120; --panel:#141e31; --raised:#1e2b42; --ink:#f6f8fc; --muted:#a9b6ca; --line:#30405a; --accent:#fa8b49; --accent-contrast:#151a25; }
+@layer base {
+  html { @apply scroll-smooth; }
+  body { @apply m-0 min-h-screen font-sans antialiased; background:var(--page); color:var(--ink); }
+  button, input, select { @apply font-sans; }
+  button { @apply cursor-pointer; }
+  a { @apply no-underline; }
+}
+@layer components {
+  .laptop-card { @apply overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-xl; background:var(--panel); border-color:var(--line); }
+  .btn-action { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50; background:var(--accent); color:var(--accent-contrast); }
+  .btn-action:hover { @apply brightness-110; }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:brightness-95; border-color:var(--line); background:var(--raised); color:var(--ink); }
+  .surface { @apply rounded-2xl border; background:var(--panel); border-color:var(--line); }
+  .field-control { @apply w-full rounded-xl border px-4 py-3 text-sm outline-none transition-colors focus:ring-2; background:var(--panel); color:var(--ink); border-color:var(--line); --tw-ring-color:var(--accent); }
+  .nav-link { @apply rounded-lg px-3 py-2 text-sm font-medium transition-colors; color:var(--muted); }
+  .nav-link:hover, .nav-link[aria-current="page"] { background:var(--raised); color:var(--ink); }
+  .muted { color:var(--muted); }
+  .accent-text { color:var(--accent); }
+  .chip { @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold; background:var(--raised); color:var(--ink); }
+  .stat-value { @apply mt-2 text-3xl font-extrabold tracking-tight; }
+  .spec-row { @apply border-b py-3 text-sm; border-color:var(--line); }
+  .best-value { background:color-mix(in srgb, var(--accent) 19%, var(--panel)); color:var(--ink); @apply font-bold; }
+}
